@@ -22,22 +22,35 @@ const eslintConfig = defineConfig([
     "eslint-rules/**", // Ignore custom ESLint rules directory
   ]),
   // eslint-plugin-unicorn: Best practices and modern JavaScript patterns
-  eslintPluginUnicorn.configs.recommended,
-  // eslint-plugin-sonarjs: Bug detection and code complexity analysis
-  eslintPluginSonarjs.configs.recommended,
-  // eslint-plugin-security: Security vulnerability detection
-  eslintPluginSecurity.configs.recommended,
   {
-    // eslint-plugin-promise: Best practices for Promises and async/await
-    // eslint-plugin-security: Security vulnerability detection
-    // eslint-plugin-simple-import-sort: Automatic import/export sorting
+    ...eslintPluginUnicorn.configs.recommended,
+    plugins: {
+      "unicorn": eslintPluginUnicorn,
+    },
+  },
+  // eslint-plugin-sonarjs: Bug detection and code complexity analysis
+  {
+    ...eslintPluginSonarjs.configs.recommended,
+    plugins: {
+      "sonarjs": eslintPluginSonarjs,
+    },
+  },
+  // eslint-plugin-security: Security vulnerability detection
+  {
+    ...eslintPluginSecurity.configs.recommended,
+    plugins: {
+      "security": eslintPluginSecurity,
+    },
+  },
+  {
+    // Register remaining plugins
     plugins: {
       "promise": eslintPluginPromise,
-      "security": eslintPluginSecurity,
       "simple-import-sort": simpleImportSort,
       "custom": customPlugin,
     },
     rules: {
+      // no-relative-imports: Enforce using @/ path aliases instead of relative imports, './' is allowed
       "custom/no-relative-imports": "error",
       // Disable prevent-abbreviations as it's too strict (e.g., props, utils)
       "unicorn/prevent-abbreviations": "off",
