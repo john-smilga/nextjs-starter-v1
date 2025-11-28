@@ -23,24 +23,24 @@ const eslintConfig = defineConfig([
   ]),
   // eslint-plugin-unicorn: Best practices and modern JavaScript patterns
   {
+    ...eslintPluginUnicorn.configs.recommended,
     plugins: {
       "unicorn": eslintPluginUnicorn,
     },
-    ...eslintPluginUnicorn.configs.recommended,
   },
   // eslint-plugin-sonarjs: Bug detection and code complexity analysis
   {
+    ...eslintPluginSonarjs.configs.recommended,
     plugins: {
       "sonarjs": eslintPluginSonarjs,
     },
-    ...eslintPluginSonarjs.configs.recommended,
   },
   // eslint-plugin-security: Security vulnerability detection
   {
+    ...eslintPluginSecurity.configs.recommended,
     plugins: {
       "security": eslintPluginSecurity,
     },
-    ...eslintPluginSecurity.configs.recommended,
   },
   {
     // Register remaining plugins
